@@ -20,6 +20,10 @@ easyPGPzy is a cross platform (Mac, Win, Linux) PGP encrypter
  
  `npm install -g electron`
  
+ Install dependencies
+ 
+ `npm install`
+ 
  Run the app
  
  `npm start`
