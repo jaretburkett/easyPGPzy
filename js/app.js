@@ -5,10 +5,15 @@
 const openpgp = require('openpgp');
 const fs = require('fs');
 const {dialog} = require('electron').remote;
+const remote = require('electron').remote;
 const dateFormat = require('dateformat');
 var shell = require('electron').shell;
 
+// get isdev
+var isDev = remote.getGlobal('sharedObject').isDev;
 
+
+// globals
 var privkey = '';
 
 openpgp.initWorker({ path:'./node_modules/openpgp/dist/openpgp.worker.js' }); // set the relative web worker path

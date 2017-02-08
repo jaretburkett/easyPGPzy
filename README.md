@@ -3,11 +3,15 @@
 What is easyPGPzy?
 easyPGPzy is a cross platform (Mac, Win, Linux) PGP encrypter
  / decrypter that aims to make it easier to perform PGP 
- encrypted communication. It is built on Electron and openPGPjs
+ encrypted communication. It is built on 
+ [Electron](http://electron.atom.io/)Electron and 
+ [openPGPjs](https://github.com/openpgpjs/openpgpjs)
  
  ####How to run
  
  First you need nodeJS v4+.
+ 
+ [NodeJS](https://nodejs.org/en/)
  
  clone the repository
  
