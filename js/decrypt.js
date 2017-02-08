@@ -8,7 +8,7 @@ $(function(){
         popup(true, 'Decrypting');
 
         // get private key
-        var privkeyPath = $(this)[0].files[0].path;
+        var privkeyPath = $('#private-key')[0].files[0].path;
         fs.readFile(privkeyPath, 'utf8', function (err,data) {
             if (err) {
                 return alert(err);
