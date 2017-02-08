@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>EasyPGPzy</title>
+
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/app.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">easy<strong>PGP</strong>zy</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" class="sec-link" data-id="decrypt">Decrypt</a></li>
+                <li><a href="#" class="sec-link" data-id="encrypt">Encrypt</a></li>
+                <li><a href="#" class="sec-link" data-id="generate">Generate Keys</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" class="sec-link" data-id="about">About</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="navpad"></div>
+
+<div class="container-fluid">
+    <section id="section-decrypt">
+        <div class="row">
+            <div class="col-xs-6 margin-top-md">
+                <form id="decryptform">
+                    <div class="form-group">
+                        <label>Private Key</label>
+                        <label id="private-key-label" for="private-key" class="btn btn-block btn-default">
+                            <i class="fa fa-key" aria-hidden="true"></i> Load Private Key
+                        </label>
+                        <input type="file" id="private-key" data-label="Load Private Key">
+                    </div>
+                    <div class="form-group">
+                        <label for="pkpassword">Passphrase</label>
+                        <input type="password" class="form-control" id="pkpassword" placeholder="Passphrase">
+                    </div>
+                    <div class="form-group">
+                        <label for="encryptedmessage">Encrypted Message</label>
+                        <textarea id="encryptedmessage" class="form-control" rows="13"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <button type="submit" class="btn btn-block btn-default">Decrypt</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-xs-6 margin-top-md">
+                <label>Decrypted Message</label>
+                <div id="decrypted-message" class="well">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-encrypt">
+        <div class="row">
+            <div class="col-xs-6 margin-top-md">
+                <form id="encryptform">
+                    <div class="form-group">
+                        <label id="encrypt-public-key-file-label" for="encrypt-public-key-file"
+                               class="btn btn-block btn-default">
+                            <i class="fa fa-key" aria-hidden="true"></i> Load Public Key
+                        </label>
+                        <input type="file" id="encrypt-public-key-file" data-label="Load Public Key">
+                    </div>
+                    <div class="form-group">
+                        <label for="encrypt-key">Public Key</label>
+                        <textarea id="encrypt-key" class="form-control" rows="7"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="encrypt-message">Message</label>
+                        <textarea id="encrypt-message" class="form-control" rows="7"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <button type="submit" class="btn btn-block btn-default">Encrypt</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-xs-6 margin-top-md">
+                <label>Encrypted Message</label>
+                <div id="encrypt-encrypted-message" class="well">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-generate">
+        <div class="row">
+            <div class="col-xs-6 margin-top-md">
+                <form id="gen-key">
+                    <div class="form-group">
+                        <label for="gen-pkpassword">Passphrase</label>
+                        <input type="password" class="form-control" id="gen-pkpassword" placeholder="Passphrase">
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-name">Name</label>
+                        <input type="text" class="form-control" id="gen-name" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="gen-email">Email</label>
+                        <input type="email" class="form-control" id="gen-email" placeholder="john@doe.com">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <button type="submit" class="btn btn-block btn-default">Generate Key</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-xs-6 margin-top-md">
+                <label>Keys</label>
+                <div id="gen-keys" class="well">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-about">
+        <p class="lead">
+            What is easy<strong>PGP</strong>zy?
+        </p>
+        <p>easy<strong>PGP</strong>zy is a cross platform (Mac, Win, Linux) PGP encrypter / decrypter that aims to
+        make it easier to perform PGP encrypted communication. It is built on
+            <a href="http://electron.atom.io/">Electron</a> and
+        <a href="https://github.com/openpgpjs/openpgpjs">openPGPjs</a> </p>
+
+        <p class="lead">
+            How it <strong>works</strong>
+        </p>
+        <p>First you need to generate a public and private key pair in the generate section. You share
+        your public key with the person you want to communicate with, and they share their public key with you.
+        <strong>Never share your private key with anyone.</strong> You can both use the other person's
+        public key to encrypt a message. Send this encrypted message to each other and you will be able to
+        decrypt the message with your Private Key and Passphrase (if you set one up). The only way to
+        decrypt a message encrypted with a Public Key is with the matching Private Key. Which makes
+        PGP encrypted communication 100% safe and private, as long as you keep your private key secure.</p>
+
+        <p class="lead">
+            Learn <strong>More</strong>
+        </p>
+        <p>Learn more and get updates at <a href="http://easypgpzy.com">easypgpzy.com</a> </p>
+    </section>
+</div><!-- /.container -->
+
+<div class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 text-left">
+                v0.0.1
+            </div>
+            <div class="col-xs-6 text-right">
+                <a href="#" id="donate-button">
+                    <i class="fa fa-btc" aria-hidden="true"></i> Donate
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup-message">
+    <div class="popup-content">
+
+    </div>
+</div>
+
+<div class="donate-message">
+    <div class="donate-content">
+        <h3>Donate <i class="fa fa-btc" aria-hidden="true"></i></h3>
+        <p>We only accept donations in Bitcoin. Your donations go towards continued development of this
+        program.</p>
+        <div class="qr-code">
+            <img src="./img/btc-address.png"/>
+        </div>
+
+        12bNfSXoSpE3Pm1EQZw2SQv1pYDF3zzZvi
+
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {
+    window.module = module;
+    module = undefined;
+}</script>
+
+<!-- normal script imports etc  -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/app.js"></script>
+<script src="./js/decrypt.js"></script>
+<script src="./js/encrypt.js"></script>
+<script src="./js/generate.js"></script>
+
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
+</body>
+</html>
