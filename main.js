@@ -1,8 +1,8 @@
-const electronLocalshortcut = require('electron-localshortcut');
+// const electronLocalshortcut = require('electron-localshortcut');
 const {app, BrowserWindow, clipboard, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
 // check if development mode or production
 var isDev = false;
@@ -27,7 +27,13 @@ let win;
 
 function createWindow() {
     // Create the browser window.
-    win = new BrowserWindow({width: 900, height: 600, titleBarStyle: 'hidden'});
+    win = new BrowserWindow({
+        width: 900,
+        height: 600,
+        titleBarStyle: 'hidden',
+        backgroundColor: '#ffffff',
+        icon: path.join(__dirname, 'assets/icons/png/512x512.png')
+    });
 
     // Disable menu bar
     win.setMenu(null);
@@ -39,13 +45,6 @@ function createWindow() {
         slashes: true
     }));
 
-
-    // set dev hotkeys
-    if(isDev){
-        electronLocalshortcut.register(win, 'Ctrl+I', () => {
-            win.webContents.openDevTools();
-        });
-    }
     // win.webContents.openDevTools();
 
     // Emitted when the window is closed.
@@ -66,9 +65,9 @@ app.on('ready', createWindow);
 app.on('window-all-closed', () => {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
+    // if (process.platform !== 'darwin') {
         app.quit()
-    }
+    // }
 });
 
 app.on('activate', () => {

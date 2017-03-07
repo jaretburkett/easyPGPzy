@@ -1,44 +1,51 @@
-
-$(function(){
+$(function () {
 
     // decrypt form
-    $('#decryptform').submit(function( event ) {
+    $('#decryptform').submit(function (event) {
         event.preventDefault();
 
         popup(true, 'Decrypting');
 
-        // get private key
-        var privkeyPath = $('#private-key')[0].files[0].path;
-        fs.readFile(privkeyPath, 'utf8', function (err,data) {
+        getKey.privateKey(function (err, key) {
             if (err) {
-                return alert(err);
+                error(err);
+            } else {
+                privkey = key;
+                decryptMessage();
             }
-            privkey = data.toString();
-            decryptMessage();
         });
     });
-
 });
 
-function decryptMessage(){
+function decryptMessage() {
     // get form
-    console.log(privkey);
+    // console.log(privkey);
 
     var encryptedmessage = $('#encryptedmessage').val();
     console.log(encryptedmessage);
 
     var privKeyDE = openpgp.key.readArmored(privkey).keys[0];
     privKeyDE.decrypt($('#pkpassword').val());
+    try {
+        var options = {
+            message: openpgp.message.readArmored(encryptedmessage),     // parse armored message
+            privateKey: privKeyDE // for decryption
+        };
+    } catch (e) {
+        console.log(e);
+        error('Not a valid encrypted message');
+        return false;
+    }
 
-    var options =  {
-        message: openpgp.message.readArmored(encryptedmessage),     // parse armored message
-        privateKey: privKeyDE // for decryption
-    };
     console.log(options);
-    openpgp.decrypt(options).then(function(plaintext) {
+    openpgp.decrypt(options).then(function (plaintext) {
         popup(false);
         var formattedPT = plaintext.data.replace(/(?:\r\n|\r|\n)/g, '<br />');
         $('#decrypted-message').html(formattedPT); // Uint8Array([0x01, 0x01, 0x01])
+    }).catch(function (err) {
+        // needs password
+        error('Wrong private key or passphrase');
+        return false;
     });
 }
 

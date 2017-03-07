@@ -21,10 +21,29 @@ $(function () {
             numBits: 4096, // RSA key size
             passphrase: $('#gen-pkpassword').val()
         };
-        popup(true, 'Generating Keys');
+        popup(true, 'Generating Keys: Will take a while');
         openpgp.generateKey(options).then(function(key) {
-            genPrivkey = key.privateKeyArmored; // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
-            genPubkey = key.publicKeyArmored;   // '-----BEGIN PGP PUBLIC KEY BLOCK ... '
+            // genPrivkey = key.privateKeyArmored; // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
+            // genPubkey = key.publicKeyArmored;   // '-----BEGIN PGP PUBLIC KEY BLOCK ... '
+            var tmpPrivkey = key.privateKeyArmored.match(/(\S{50,})(\s.*)[^---]*/)[0]; // '-----BEGIN PGP PRIVATE KEY BLOCK ... '
+            var tmpPubkey = key.publicKeyArmored.match(/(\S{50,})(\s.*)[^---]*/)[0];   // '-----BEGIN PGP PUBLIC KEY BLOCK ... '
+
+            // clean keys
+            var keyInfo = {
+                privateKey:{
+                    start:'-----BEGIN PGP PRIVATE KEY BLOCK-----',
+                    end:'-----END PGP PRIVATE KEY BLOCK-----'
+                },
+                publicKey:{
+                    start:'-----BEGIN PGP PUBLIC KEY BLOCK-----',
+                    end:'-----END PGP PUBLIC KEY BLOCK-----'
+                },
+                tags:'Version: '+keyTags.version
+            };
+
+            genPubkey = keyInfo.publicKey.start + '\n'+keyInfo.tags+'\n \n'+tmpPubkey+keyInfo.publicKey.end;
+            genPrivkey = genPubkey + '\n \n \n '+ keyInfo.privateKey.start+ '\n'+keyInfo.tags+ '\n \n'+tmpPrivkey+keyInfo.privateKey.end;
+
             popup(false);
             console.log(genPrivkey);
             console.log(genPubkey);

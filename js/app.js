@@ -8,10 +8,15 @@ const {dialog} = require('electron').remote;
 const remote = require('electron').remote;
 const dateFormat = require('dateformat');
 var shell = require('electron').shell;
+var getKey = require('./js/modules/getKey');
 
 // get isdev
 var isDev = remote.getGlobal('sharedObject').isDev;
 
+// globals
+var keyTags = {
+    version: 'easyPGP v1.0.101'
+};
 
 // globals
 var privkey = '';
@@ -76,6 +81,11 @@ $(function() {
         // show filename
         $("label[for='" + $(this).attr("id") + "']").html(label);
     });
+
+    // error click to remove
+    $('.popup-message').click(function () {
+        $(this).fadeOut();
+    })
 });
 
 function popup(on, message){
@@ -93,3 +103,19 @@ function popup(on, message){
     }
 }
 
+function error(message) {
+    popup(true, message);
+    setTimeout(function () {
+        popup(false, null);
+    }, 3000)
+}
+
+// disable pinch zooming
+window.addEventListener('mousewheel', function (e) {
+    // zoom
+    if (e.ctrlKey) {
+        console.log(e);
+        e.preventDefault();
+
+    }
+});

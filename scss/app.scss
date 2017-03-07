@@ -5,6 +5,13 @@
 @import "bootstrap-sass-3.3.7/assets/stylesheets/bootstrap-compass";
 //
 
+a{
+  color:#2a6ba0;
+  &:hover{
+    color:#2a6ba0;
+    text-decoration: none;
+  }
+}
 .navbar-fixed-top{
   padding-top:$top-drag-height;
 }
@@ -76,7 +83,7 @@ section {
   padding: 20px;
   text-align: center;
   box-shadow: 0 0 2px 0 rgba(0,0,0,0.5);
-  font-size: 20px;
+  font-size: 16px;
 }
 .donate-content{
   font-size:14px;

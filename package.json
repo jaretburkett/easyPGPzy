@@ -1,6 +1,6 @@
 {
-  "name": "easypgpzy",
-  "version": "0.0.1",
+  "name": "easyPGP",
+  "version": "1.0.100",
   "description": "a cross platform (Mac, Win, Linux) PGP encrypter / decrypter that aims to make it easier to perform PGP encrypted communication.",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "package-win": "./node_modules/.bin/electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"Jaret Burkett\" --version-string.FileDescription=\"A Bitcoin Price Ticker\" --version-string.ProductName=\"Bitcoin Price\"",
     "package-linux": "./node_modules/.bin/electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
     "package-pi": "./node_modules/.bin/electron-packager . --overwrite --platform=linux --arch=armv7l --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "create-installer-mac": "./node_modules/.bin/electron-installer-dmg ./release-builds/BitcoinPrice-darwin-x64/BitcoinPrice.app BitcoinPrice --out=release-builds --background=assets/dmg-background.png --overwrite --icon=assets/icons/mac/icon.icns"
+    "create-installer-mac": "./node_modules/.bin/electron-installer-dmg ./release-builds/easyPGP-darwin-x64/easyPGP.app easyPGP --out=release-builds --background=assets/dmg-background.png --overwrite --icon=assets/icons/mac/icon.icns"
   },
   "author": "Jaret Burkett",
   "url": "https://github.com/jaretburkett/easyPGPzy/",

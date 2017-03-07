@@ -13,7 +13,7 @@ $brand-danger: #bf5329;
 //$font-family-sans-serif: "Raleway", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: #596063;
 
 // Navbar
 $navbar-default-bg: #fff;
@@ -21,6 +21,10 @@ $top-drag-height:25px;
 
 // Buttons
 $btn-default-color: $text-color;
+
+$btn-default-color:              #ffffff;
+$btn-default-bg:                 #596063;
+$btn-default-border:             #596063;
 
 // Inputs
 $input-border: lighten($text-color, 40%);
@@ -34,16 +38,16 @@ $panel-default-heading-bg: #333;
 
 //=== Inverted navbar
 // Reset inverted navbar basics
-$navbar-default-color:                      #333;
-$navbar-inverse-color:                      #333;
+$navbar-default-color:                      $text-color;
+$navbar-inverse-color:                      $text-color;
 $navbar-inverse-bg: #ffffff;
 $navbar-inverse-border:                     $navbar-inverse-bg;
 //
 
 //// Inverted navbar links
-$navbar-default-link-color:                 #333;
-$navbar-inverse-link-color:                 #333;
-$navbar-inverse-link-hover-color:           #000;
+$navbar-default-link-color:                 $text-color;
+$navbar-inverse-link-color:                 $text-color;
+$navbar-inverse-link-hover-color:           darken($text-color, 10%);
 $navbar-inverse-link-hover-bg:              $navbar-inverse-bg;
 $navbar-inverse-link-active-bg:              darken($navbar-inverse-bg, 10%);
 //$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
