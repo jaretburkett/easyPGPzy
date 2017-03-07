@@ -31,6 +31,7 @@ function createWindow() {
         width: 900,
         height: 600,
         titleBarStyle: 'hidden',
+        frame: false,
         backgroundColor: '#ffffff',
         icon: path.join(__dirname, 'assets/icons/png/512x512.png')
     });

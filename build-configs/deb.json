@@ -1,0 +1,14 @@
+{
+  "options":{
+    "name": "easypgp",
+    "productName":"easyPGP"
+  },
+  "dest": "release-builds",
+  "icon": "assets/icon.png",
+  "categories": [
+    "Utility"
+  ],
+  "lintianOverrides": [
+    "changelog-file-missing-in-native-package"
+  ]
+}
