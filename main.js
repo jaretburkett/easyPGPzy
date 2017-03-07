@@ -1,6 +1,25 @@
+const electronLocalshortcut = require('electron-localshortcut');
 const {app, BrowserWindow, clipboard, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
+require('electron-reload')(__dirname);
+
+// check if development mode or production
+var isDev = false;
+for(var i =0; i < process.argv.length; i++){
+    if(process.argv[i] == 'dev'){
+        isDev = true;
+    }
+}
+if(isDev){
+    console.log('Development Mode');
+} else {
+    console.log('Production Mode');
+}
+
+// put isDev in global
+global.sharedObject = {isDev: isDev};
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -9,6 +28,8 @@ let win;
 function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({width: 900, height: 600, titleBarStyle: 'hidden'});
+
+    // Disable menu bar
     win.setMenu(null);
 
     // and load the index.html of the app.
@@ -18,7 +39,13 @@ function createWindow() {
         slashes: true
     }));
 
-    // Open the DevTools.
+
+    // set dev hotkeys
+    if(isDev){
+        electronLocalshortcut.register(win, 'Ctrl+I', () => {
+            win.webContents.openDevTools();
+        });
+    }
     // win.webContents.openDevTools();
 
     // Emitted when the window is closed.

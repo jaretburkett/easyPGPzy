@@ -1,7 +1,7 @@
 {
-  "name": "opencrypt",
-  "version": "1.0.0",
-  "description": "",
+  "name": "easypgpzy",
+  "version": "0.0.1",
+  "description": "a cross platform (Mac, Win, Linux) PGP encrypter / decrypter that aims to make it easier to perform PGP encrypted communication.",
   "main": "main.js",
   "scripts": {
     "sass": "./node_modules/.bin/gulp sass",
@@ -18,11 +18,15 @@
     "package-pi": "./node_modules/.bin/electron-packager . --overwrite --platform=linux --arch=armv7l --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
     "create-installer-mac": "./node_modules/.bin/electron-installer-dmg ./release-builds/BitcoinPrice-darwin-x64/BitcoinPrice.app BitcoinPrice --out=release-builds --background=assets/dmg-background.png --overwrite --icon=assets/icons/mac/icon.icns"
   },
-  "author": "",
+  "author": "Jaret Burkett",
+  "url": "https://github.com/jaretburkett/easyPGPzy/",
+  "email": "jaretburkett@gmail.com",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "dateformat": "^2.0.0",
+    "electron-localshortcut": "^1.0.0",
+    "electron-reload": "^1.1.0",
     "jquery": "^3.1.1",
     "openpgp": "^2.3.6"
   },
